@@ -17,8 +17,8 @@ class UpdateSystem(priority: Int, res: MobaGame.BaseRes)
       if (input.w) state.pos.y += 1
       if (input.s) state.pos.y -= 1
 
-      if (input.a) state.pos.x += 1
-      if (input.d) state.pos.x -= 1
+      if (input.d) state.pos.x += 1
+      if (input.a) state.pos.x -= 1
     }
   }
 }

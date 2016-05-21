@@ -42,18 +42,31 @@ project(":desktop") {
     }
 }
 
+project(":server") {
+    apply plugin: "scala"
+
+    dependencies {
+        compile project(":core")
+        compile 'org.scala-lang:scala-library:2.11.1'
+        compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        compile 'com.esotericsoftware:kryonet:2.22.0-RC1'
+    }
+}
+
 project(":core") {
     apply plugin: "scala"
 
-
     dependencies {
+        compile 'org.scala-lang:scala-library:2.11.1'
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         compile "com.badlogicgames.ashley:ashley:$ashleyVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile 'com.esotericsoftware:kryonet:2.22.0-RC1'
-        compile 'org.scala-lang:scala-library:2.11.1'
         compile 'com.beachape:enumeratum_2.11:1.4.1'
+        compile 'com.twitter:chill_2.11:0.8.0'
     }
 }
 
