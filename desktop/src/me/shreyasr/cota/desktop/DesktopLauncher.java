@@ -2,6 +2,7 @@ package me.shreyasr.cota.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
 import me.shreyasr.cota.MobaGame;
 
 public class DesktopLauncher {
