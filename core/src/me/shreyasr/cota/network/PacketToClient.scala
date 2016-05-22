@@ -2,7 +2,8 @@ package me.shreyasr.cota.network
 
 import me.shreyasr.cota.component.InputDataComponent
 
-class PacketToClient(val entityData: Array[(Int, InputDataComponent)], val id: Long)
+class PacketToClient(val entityData: Array[(Int, InputDataComponent)],
+                     val id: Long, val time: Long = System.currentTimeMillis())
   extends Ordered[PacketToClient] {
 
   override def toString: String =

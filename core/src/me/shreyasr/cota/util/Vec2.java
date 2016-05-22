@@ -1,4 +1,5 @@
 package me.shreyasr.cota.util;
+
 public class Vec2 {
 
     public float x;
