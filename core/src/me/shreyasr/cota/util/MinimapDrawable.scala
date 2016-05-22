@@ -32,7 +32,7 @@ class MinimapDrawable(engine: Engine, background: Texture) extends BaseDrawable 
         val scaledY = y + pos.y / MobaGame.WORLD_HEIGHT * (height - dotSize)
         entity.get[TypeComponent].get match {
           case TypeComponent.Player => batch.setColor(Color.GREEN)
-          case TypeComponent.Minion => batch.setColor(Color.PURPLE)
+          case TypeComponent.Melee => batch.setColor(Color.BLUE)
         }
         batch.draw(dot, scaledX, scaledY, dotSize, dotSize)
       })

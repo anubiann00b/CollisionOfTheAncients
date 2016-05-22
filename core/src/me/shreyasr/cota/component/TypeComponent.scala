@@ -20,8 +20,8 @@ object TypeComponent {
     trait GameEntity extends Type
       trait Player extends GameEntity
         object Player extends Player
-      trait Minion extends GameEntity
-        object Minion extends Minion
+      trait Melee extends GameEntity
+        object Melee extends Melee
       trait Bullet extends GameEntity
         object Bullet extends Bullet
 }

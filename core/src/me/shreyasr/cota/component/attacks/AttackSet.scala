@@ -5,11 +5,11 @@ import me.shreyasr.cota.util.Vec2
 
 trait AttackSet {
 
-  val BASIC_ATTACK_TIME: Int
-  val Q_TIME: Int
-  val E_TIME: Int
-  val SPACE_TIME: Int
-  val SHIFT_TIME: Int
+  var BASIC_ATTACK_TIME: Int
+  var Q_TIME: Int
+  var E_TIME: Int
+  var SPACE_TIME: Int
+  var SHIFT_TIME: Int
 
   def basicAttack(engine: Engine, me: Entity, dirVec: Vec2): Boolean
   def e(engine: Engine, me: Entity, dirVec: Vec2): Boolean

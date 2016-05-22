@@ -10,5 +10,4 @@ class HealthComponent (var health:Int) extends Component{
     health = health - dam
     health
   }
-  def die: Unit = System.out.println("You died!")
 }

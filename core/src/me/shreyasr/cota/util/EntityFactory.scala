@@ -6,12 +6,22 @@ import me.shreyasr.cota.util.asset.Asset
 
 object EntityFactory {
 
-  def createBullet(pos: Vec2, owner: Int, asset: Asset, width: Int, height: Int) = new Entity()
+  def createBullet(pos: Vec2, owner: Int, asset: Asset, width: Int, height: Int, dam: Int) = new Entity()
     .add(new IdComponent(-1))
     .add(new OwnerIdComponent(owner))
     .add(new TypeComponent(TypeComponent.Bullet))
     .add(new StateDataComponent(pos.copy(), new Rectangle(-4, -4, 8, 8)))
     .add(new RenderDataComponent(asset, width, height, 4f))
+    .add(new DamageComponent(dam))
+    .add(new HealthComponent(600))
+  def createMelee(pos: Vec2, owner: Int, asset: Asset, width: Int, height: Int, dam: Int, frames: Int) = new Entity()
+    .add(new IdComponent(-1))
+    .add(new OwnerIdComponent(owner))
+    .add(new TypeComponent(TypeComponent.Melee))
+    .add(new StateDataComponent(pos.copy(), new Rectangle(-4, -4, width*2, height*2)))
+    .add(new RenderDataComponent(asset, width, height, 4f))
+    .add(new DamageComponent(dam))
+    .add(new HealthComponent(frames))
 
   def createRenderablePlayer(id: Int = IdComponent.randomId(),
                              input: InputDataComponent = new InputDataComponent()) =

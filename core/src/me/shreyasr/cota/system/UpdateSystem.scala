@@ -2,7 +2,7 @@ package me.shreyasr.cota.system
 
 import com.badlogic.ashley.core.{Entity, Family}
 import com.badlogic.ashley.systems.IteratingSystem
-import me.shreyasr.cota.component.attacks.{AttackSetHolder, BiopunkAttackSet, SteampunkAttackSet}
+import me.shreyasr.cota.component.attacks.{AttackSetHolder, BiopunkAttackSet, PsyberpunkAttackSet, SteampunkAttackSet}
 import me.shreyasr.cota.component.{InputDataComponent, StateDataComponent}
 import me.shreyasr.cota.util.Vec2
 import me.shreyasr.cota.{MobaGame, _}
