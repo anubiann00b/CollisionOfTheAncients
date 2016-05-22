@@ -12,6 +12,6 @@ object EntityFactory {
   def createPlayer(id: Int) = new Entity()
     .add(new TypeComponent(TypeComponent.Player))
     .add(new IdComponent(id))
-    .add(new StateDataComponent)
+    .add(new StateDataComponent(new Rectangle(0, 0, 32, 32)))
     .add(new InputDataComponent)
 }

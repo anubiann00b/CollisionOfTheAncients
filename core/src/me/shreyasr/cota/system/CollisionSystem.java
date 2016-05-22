@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.SortedIteratingSystem;
 import me.shreyasr.cota.component.StateDataComponent;
+import me.shreyasr.cota.component.TypeComponent;
 import me.shreyasr.cota.util.EntityIdComparator;
 import me.shreyasr.cota.util.Rectangle;
 
@@ -15,11 +16,16 @@ public class CollisionSystem extends SortedIteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        for(Entity e : getEntities()){
+        if (entity.getComponent(TypeComponent.class).get() instanceof TypeComponent.Bullet$) return;
+        for(Entity e : getEntities()) {
             if(entity == e) continue;
             Rectangle otherRect = e.getComponent(StateDataComponent.class).rect();
             Rectangle meRect = entity.getComponent(StateDataComponent.class).rect();
             if(otherRect.isIn(meRect)){
+                if (entity.getComponent(TypeComponent.class).get() instanceof TypeComponent.Bullet$){
+                    //Do stuff here
+                    continue;
+                }
                 boolean otherGreaterX = otherRect.pos.x > meRect.pos.x;
                 boolean otherGreaterY = otherRect.pos.y > meRect.pos.y;
                 float targetX = otherGreaterX ? (otherRect.left() + meRect.right())/2 : (meRect.left() + otherRect.right())/2;
