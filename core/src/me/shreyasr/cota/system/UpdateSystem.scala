@@ -2,15 +2,15 @@ package me.shreyasr.cota.system
 
 import com.badlogic.ashley.core.{Entity, Family}
 import com.badlogic.ashley.systems.IteratingSystem
-import me.shreyasr.cota.component.attacks.{AttackSetHolder, SteampunkAttackSet}
-import me.shreyasr.cota.{MobaGame, _}
+import me.shreyasr.cota.component.attacks.{AttackSetHolder, PsyberpunkAttackSet}
 import me.shreyasr.cota.component.{InputDataComponent, StateDataComponent}
 import me.shreyasr.cota.util.Vec2
+import me.shreyasr.cota.{MobaGame, _}
 
 class UpdateSystem(priority: Int, res: MobaGame.BaseRes, unproject: (Float, Float) => Vec2)
   extends IteratingSystem(Family.all(classOf[StateDataComponent]).get(), priority) {
 
-  val attack = new AttackSetHolder(SteampunkAttackSet)
+  val attack = new AttackSetHolder(PsyberpunkAttackSet)
 
   override def processEntity(entity: Entity, delta: Float) = {
     val inputOpt = entity.getOpt[InputDataComponent]

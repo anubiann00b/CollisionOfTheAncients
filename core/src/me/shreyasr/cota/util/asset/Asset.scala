@@ -22,9 +22,12 @@ object Asset extends ShortEnum[Asset] {
     assetManager.finishLoading()
   }
 
-  case object STEAMPUNK extends Asset(1, "steampunk.png")
-  case object STEAMPUNK_SHOTGUN_BULLET extends Asset(2, "Steampunk_bullet.png")
-  case object STEAMPUNK_GRENADE extends Asset(3, "Steampunk_grenade.png")
+  case object STEAMPUNK extends Asset(1, "sprites/steampunk.png")
+  case object STEAMPUNK_SHOTGUN_BULLET extends Asset(2, "sprites/Steampunk_bullet.png")
+  case object STEAMPUNK_GRENADE extends Asset(3, "sprites/Steampunk_grenade.png")
+
+  case object PSYBERPUNK extends Asset(8, "sprites/Psyberpunk.png")
+  case object PSYBERPUNK_BULLET extends Asset(9, "sprites/Psyberpunk_bullet.png")
 
   override def values = findValues
 }
