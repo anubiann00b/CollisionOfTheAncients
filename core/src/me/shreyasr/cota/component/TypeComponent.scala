@@ -22,4 +22,6 @@ object TypeComponent {
         object Player extends Player
       trait Minion extends GameEntity
         object Minion extends Minion
+      trait Bullet extends GameEntity
+        object Bullet extends Bullet
 }

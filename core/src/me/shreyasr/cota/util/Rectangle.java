@@ -9,17 +9,16 @@ public class Rectangle {
         size = new Vec2(width,height);
     }
     public float left(){
-        return pos.x()-size.x();
-
+        return pos.x-size.x;
     }
     public float right(){
-        return pos.x()+size.x();
+        return pos.x+size.x;
     }
     public float up(){
-        return pos.y()+size.y();
+        return pos.y+size.y;
     }
     public float down(){
-        return pos.y()-size.y();
+        return pos.y-size.y;
     }
     public boolean isIn(Rectangle rect){
         return (
@@ -30,6 +29,6 @@ public class Rectangle {
         );
     }
     public boolean isIn(Vec2 point){
-        return point.x() > pos.x() - size.x()&& point.x()< pos.x() + size.x() && point.y() > pos.y() - size.y() && point.y() < pos.y() + size.y();
+        return point.x > pos.x - size.x&& point.x< pos.x + size.x && point.y > pos.y - size.y && point.y < pos.y + size.y;
     }
 }
