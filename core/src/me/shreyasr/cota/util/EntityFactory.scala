@@ -7,7 +7,7 @@ object EntityFactory {
 
   def createRenderablePlayer(id: Int = IdComponent.randomId()) =
     createPlayer(id)
-      .add(new RenderDataComponent(Asset.PLAYER, 58, 72, 1f))
+      .add(new RenderDataComponent(Asset.STEAMPUNK, 8, 8, 4f))
 
   def createPlayer(id: Int) = new Entity()
     .add(new TypeComponent(TypeComponent.Player))

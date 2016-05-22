@@ -75,7 +75,7 @@ class MobaGame extends ApplicationAdapter {
   override def render(): Unit = {
     listener.run()
     // TODO: update packets
-    engine.update(1)
+    engine.update(Gdx.graphics.getRawDeltaTime * 1000)
     engine.getSystems.asScala
       .filter(_.isInstanceOf[RenderSystem])
       .foreach(_.update(Gdx.graphics.getRawDeltaTime * 1000))
@@ -87,10 +87,10 @@ class MobaGame extends ApplicationAdapter {
     client.start()
     try {
       client.connect(5000, "127.0.0.1", 54555, 54777)
+      println(client.getRemoteAddressUDP.getPort)
     } catch {
       case ioe: IOException => println(ioe)
       case e: Exception => println(e)
     }
-    println(client.getRemoteAddressUDP.getPort)
   }
 }

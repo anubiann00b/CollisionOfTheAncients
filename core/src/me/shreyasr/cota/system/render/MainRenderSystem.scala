@@ -12,7 +12,7 @@ class MainRenderSystem(priority: Int, res: MobaGame.RenderingRes)
   override def processEntity(entity: Entity, deltaTime: Float) {
     val ttc = entity.get[RenderDataComponent]
     if (!ttc.hide) {
-      ttc.asset.get.setFilter(TextureFilter.Linear, TextureFilter.Linear)
+      ttc.asset.get.setFilter(TextureFilter.Nearest, TextureFilter.Nearest)
 
       res.batch.setColor(ttc.color)
       res.batch.draw(ttc.asset.get,

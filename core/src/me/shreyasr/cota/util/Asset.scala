@@ -21,7 +21,7 @@ object Asset extends ShortEnum[Asset] {
     assetManager.finishLoading()
   }
 
-  case object PLAYER extends Asset(1, "badlogic.jpg")
+  case object STEAMPUNK extends Asset(1, "steampunk.png")
 
   override def values = findValues
 }

@@ -22,4 +22,10 @@ class RenderDataComponent(val asset: Asset, width: Int, height: Int, scale: Floa
   var color: Color = Color.WHITE
   var flipX: Boolean = false
   var flipY: Boolean = false
+
+  var currentDir = 3
+
+  var currentFrame = 0
+  var currentDuration = 300
+  var currentFrameTime = 0f
 }
