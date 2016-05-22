@@ -6,7 +6,8 @@ import me.shreyasr.cota.util.asset.Asset
 
 object EntityFactory {
 
-  def createRenderablePlayer(id: Int = IdComponent.randomId()) =
+  def createRenderablePlayer(id: Int = IdComponent.randomId(),
+                             input: InputDataComponent = new InputDataComponent()) =
     createPlayer(id)
       .add(new RenderDataComponent(Asset.STEAMPUNK, 8, 8, 4f))
 

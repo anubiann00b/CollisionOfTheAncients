@@ -13,7 +13,7 @@ import com.esotericsoftware.kryonet.{Listener, _}
 import com.twitter.chill.ScalaKryoInstantiator
 import me.shreyasr.cota.MobaGame.RenderingRes
 import me.shreyasr.cota.network.{KryoRegistrar, ListQueuedListener, PacketQueue, PacketToClient}
-import me.shreyasr.cota.system.render.util.{CameraUpdateSystem, RenderSystem}
+import me.shreyasr.cota.system.render.util.{BasicRenderSystem, CameraUpdateSystem, ProjectionSystem, RenderSystem}
 import me.shreyasr.cota.system.render._
 import me.shreyasr.cota.system._
 import me.shreyasr.cota.util.EntityFactory
@@ -23,6 +23,7 @@ import scala.collection.JavaConverters._
 
 object MobaGame {
 
+  val FRAME_BUFFER = 2
   val WORLD_WIDTH = 6144
   val WORLD_HEIGHT = 6144
 
@@ -41,11 +42,13 @@ object MobaGame {
 
   class ClientRes extends BaseRes {
     val player = EntityFactory.createRenderablePlayer()
+    var lastPacketPing = -1l
     val client = new Client(8192, 2048, new KryoSerialization(new ScalaKryoInstantiator().newKryo()))
     val listener = new ListQueuedListener(new Listener {
       override def received(conn: Connection, obj: scala.Any): Unit = {
         obj match {
           case packet: PacketToClient =>
+            lastPacketPing = System.currentTimeMillis()-packet.time
             packetQueue.addPacket(packet)
           case _: FrameworkMessage =>
         }
@@ -63,6 +66,7 @@ class MobaGame extends ApplicationAdapter {
   lazy val res = new RenderingRes()
   import res._
 
+
   override def create() {
     Asset.loadAll(assetManager)
 
@@ -78,7 +82,16 @@ class MobaGame extends ApplicationAdapter {
     engine.addSystem(new CameraUpdateSystem(p(), res))
     engine.addSystem(new PreRenderSystem(p()))
     engine.addSystem(new   MapRenderSystem(p(), res))
-    engine.addSystem(new PreBatchRenderSystem(p(), res))
+      engine.addSystem(new PreBatchRenderSystem(p(), res))
+    engine.addSystem(new ProjectionSystem(p(), res))
+    engine.addSystem(new BasicRenderSystem(p()) {
+      override def update(deltaTime: Float): Unit = {
+        font.draw(batch, lastPacketPing.toString, 8, Gdx.graphics.getHeight - 8)
+        font.draw(batch, packetQueue.numPackets.toString, 8, Gdx.graphics.getHeight - 24)
+        font.draw(batch, Gdx.graphics.getFramesPerSecond.toString,
+          Gdx.graphics.getWidth - 24, Gdx.graphics.getHeight - 8)
+      }
+    })
     engine.addSystem(new   MainRenderSystem(p(), res))
     engine.addSystem(new PostRenderSystem(p(), res))
     engine.addSystem(new   UIRenderSystem(p(), res))
@@ -89,9 +102,15 @@ class MobaGame extends ApplicationAdapter {
   override def render(): Unit = {
     listener.run()
     engine.update(Gdx.graphics.getRawDeltaTime * 1000)
+
+    if (packetQueue.numPackets > 10) {
+      while(packetQueue.numPackets > 3) {
+        engine.update(Gdx.graphics.getRawDeltaTime * 1000)
+      }
+    }
+
     engine.getSystems.asScala
       .filter(_.isInstanceOf[RenderSystem])
-          .toArray.sortBy(_.priority)
       .foreach(_.update(Gdx.graphics.getRawDeltaTime * 1000))
   }
 
@@ -105,6 +124,7 @@ class MobaGame extends ApplicationAdapter {
     client.addListener(listener)
     client.start()
     try {
+//      client.connect(5000, "10.106.16.95", 54555, 54777)
       client.connect(5000, "127.0.0.1", 54555, 54777)
       println(client.getRemoteAddressUDP.getPort)
     } catch {
