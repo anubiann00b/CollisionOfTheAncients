@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.{Color, Pixmap, Texture}
 import com.badlogic.gdx.scenes.scene2d.utils.BaseDrawable
 import me.shreyasr.cota._
-import me.shreyasr.cota.component.TypeComponent.GameEntity
+import me.shreyasr.cota.component.TypeComponent.{Bullet, GameEntity}
 import me.shreyasr.cota.component.{StateDataComponent, TypeComponent}
 
 import scala.collection.JavaConverters._
@@ -25,6 +25,7 @@ class MinimapDrawable(engine: Engine, background: Texture) extends BaseDrawable 
 
     engine.getEntities.asScala
       .filter(_.is[GameEntity])
+      .filterNot(_.is[Bullet])
       .foreach(entity => {
         val pos = entity.get[StateDataComponent].pos
         val scaledX = x + pos.x / MobaGame.WORLD_WIDTH * (width - dotSize)

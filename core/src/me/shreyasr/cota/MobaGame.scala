@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.{Color, OrthographicCamera}
 import com.badlogic.gdx.graphics.g2d.{BitmapFont, SpriteBatch}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.viewport.ExtendViewport
 import com.badlogic.gdx.{ApplicationAdapter, Gdx}
 import com.esotericsoftware.kryonet.{Listener, _}
@@ -17,7 +18,7 @@ import me.shreyasr.cota.network.{KryoRegistrar, ListQueuedListener, PacketQueue,
 import me.shreyasr.cota.system.render.util._
 import me.shreyasr.cota.system.render._
 import me.shreyasr.cota.system._
-import me.shreyasr.cota.util.EntityFactory
+import me.shreyasr.cota.util.{EntityFactory, Vec2}
 import me.shreyasr.cota.util.asset.Asset
 
 import scala.collection.JavaConverters._
@@ -77,8 +78,9 @@ class MobaGame extends ApplicationAdapter {
     val p = { var i = 0; () => { i += 1; i} }
     engine.addSystem(new InputSendSystem(p(), res))
     engine.addSystem(new PacketProcessSystem(p(), res))
-    engine.addSystem(new UpdateSystem(p(), res))
+    engine.addSystem(new UpdateSystem(p(), res, (x, y) => new Vec2(viewport.unproject(new Vector2(x, y)))))
     engine.addSystem(new CollisionSystem(p()))
+    engine.addSystem(new VelUpdateSystem(p()))
 
     engine.addSystem(new RenderDataUpdateSystem(p(), res))
 

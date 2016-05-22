@@ -2,10 +2,12 @@ package me.shreyasr.cota.system
 
 import com.badlogic.ashley.core.{Entity, Family}
 import com.badlogic.ashley.systems.IteratingSystem
+import me.shreyasr.cota.component.attacks.SteampunkAttackSet
 import me.shreyasr.cota.{MobaGame, _}
 import me.shreyasr.cota.component.{InputDataComponent, StateDataComponent}
+import me.shreyasr.cota.util.Vec2
 
-class UpdateSystem(priority: Int, res: MobaGame.BaseRes)
+class UpdateSystem(priority: Int, res: MobaGame.BaseRes, unproject: (Float, Float) => Vec2)
   extends IteratingSystem(Family.all(classOf[StateDataComponent]).get(), priority) {
 
   override def processEntity(entity: Entity, delta: Float) = {
@@ -14,11 +16,15 @@ class UpdateSystem(priority: Int, res: MobaGame.BaseRes)
 
     if (inputOpt.isDefined) {
       val input = inputOpt.get
-      if (input.w) state.pos.y += 2
-      if (input.s) state.pos.y -= 2
+      state.vel.set(new Vec2(0, 0))
+      if (input.w) state.vel.y = 2
+      if (input.s) state.vel.y = -2
 
-      if (input.d) state.pos.x += 2
-      if (input.a) state.pos.x -= 2
+      if (input.d) state.vel.x = 2
+      if (input.a) state.vel.x = -2
+
+      if (input.leftClick) SteampunkAttackSet.basicAttack(getEngine, entity,
+        unproject(input.mouseX, input.mouseY).sub(state.pos))
     }
   }
 }

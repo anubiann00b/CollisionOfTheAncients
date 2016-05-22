@@ -23,6 +23,7 @@ object Asset extends ShortEnum[Asset] {
   }
 
   case object STEAMPUNK extends Asset(1, "steampunk.png")
+  case object SHOTGUN_BULLET extends Asset(2, "Steampunk_bullet.png")
 
   override def values = findValues
 }
