@@ -18,7 +18,7 @@ object SteampunkAttackSet {
     val baseDir = (dirVec.dir % (2*math.Pi)).toFloat - SHOTGUN_ARC/2
     (0 until SHOTGUN_BULLETS).foreach(i => {
       val dir = baseDir + i * SHOTGUN_ARC/SHOTGUN_BULLETS
-      val bulletEntity = EntityFactory.createBullet(me.get[StateDataComponent].pos)
+      val bulletEntity = EntityFactory.createBullet(me.get[StateDataComponent].pos, me.id)
       bulletEntity.get[StateDataComponent].vel.set(Vec2.fromDir(dir)).scale(3)
       bulletEntity.get[RenderDataComponent].rotation = dir.toFloat
       engine.addEntity(bulletEntity)
