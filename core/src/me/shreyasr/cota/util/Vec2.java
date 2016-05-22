@@ -24,7 +24,7 @@ public class Vec2 {
         return this;
     }
 
-    public Vec2 set(Vec2 that){
+    public Vec2 set(Vec2 that) {
         x = that.x;
         y = that.y;
         return this;

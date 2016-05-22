@@ -1,6 +1,7 @@
 package me.shreyasr.cota.system.render
 
 import com.badlogic.ashley.core.{Entity, Family}
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture.TextureFilter
 import me.shreyasr.cota.component.RenderDataComponent
 import me.shreyasr.cota.system.render.util.IteratingRenderSystem
@@ -23,5 +24,6 @@ class MainRenderSystem(priority: Int, res: MobaGame.RenderingRes)
         ttc.srcX, ttc.srcY, ttc.srcWidth, ttc.srcHeight,
         ttc.flipX, ttc.flipY)
     }
+    ttc.color = Color.WHITE
   }
 }

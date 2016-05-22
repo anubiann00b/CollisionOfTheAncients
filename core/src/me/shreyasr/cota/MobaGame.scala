@@ -2,9 +2,9 @@ package me.shreyasr.cota
 
 import java.io.IOException
 
-import com.badlogic.ashley.core.Engine
+import com.badlogic.ashley.core.{Engine, Entity, Family}
 import com.badlogic.gdx.assets.AssetManager
-import com.badlogic.gdx.graphics.OrthographicCamera
+import com.badlogic.gdx.graphics.{Color, OrthographicCamera}
 import com.badlogic.gdx.graphics.g2d.{BitmapFont, SpriteBatch}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.viewport.ExtendViewport
@@ -12,8 +12,9 @@ import com.badlogic.gdx.{ApplicationAdapter, Gdx}
 import com.esotericsoftware.kryonet.{Listener, _}
 import com.twitter.chill.ScalaKryoInstantiator
 import me.shreyasr.cota.MobaGame.RenderingRes
+import me.shreyasr.cota.component.{RenderDataComponent, StateDataComponent}
 import me.shreyasr.cota.network.{KryoRegistrar, ListQueuedListener, PacketQueue, PacketToClient}
-import me.shreyasr.cota.system.render.util.{BasicRenderSystem, CameraUpdateSystem, ProjectionSystem, RenderSystem}
+import me.shreyasr.cota.system.render.util._
 import me.shreyasr.cota.system.render._
 import me.shreyasr.cota.system._
 import me.shreyasr.cota.util.EntityFactory
@@ -32,6 +33,7 @@ object MobaGame {
   class RenderingRes extends ClientRes {
     val batch = new SpriteBatch
     val shape = new ShapeRenderer
+    shape.setAutoShapeType(true)
     val assetManager = new AssetManager
     val font = new BitmapFont
 
@@ -76,6 +78,7 @@ class MobaGame extends ApplicationAdapter {
     engine.addSystem(new InputSendSystem(p(), res))
     engine.addSystem(new PacketProcessSystem(p(), res))
     engine.addSystem(new UpdateSystem(p(), res))
+//    engine.addSystem(new CollisionSystem(p()))
 
     engine.addSystem(new RenderDataUpdateSystem(p(), res))
 
@@ -93,6 +96,15 @@ class MobaGame extends ApplicationAdapter {
       }
     })
     engine.addSystem(new   MainRenderSystem(p(), res))
+    engine.addSystem(new ShapeRenderSystem(p(), res))
+    engine.addSystem(new IteratingRenderSystem(Family.all(classOf[RenderDataComponent]).get(), p()) {
+      override def processEntity(entity: Entity, deltaTime: Float): Unit = {
+        val rect = entity.get[StateDataComponent].rect
+        val pos = entity.get[StateDataComponent].pos
+        res.shape.setColor(Color.RED)
+        res.shape.rect(rect.offset.x + pos.x, rect.offset.y + pos.y, rect.size.x, rect.size.y)
+      }
+    })
     engine.addSystem(new PostRenderSystem(p(), res))
     engine.addSystem(new   UIRenderSystem(p(), res))
 
