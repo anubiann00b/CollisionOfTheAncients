@@ -23,4 +23,5 @@ object EntityFactory {
     .add(new IdComponent(id))
     .add(new StateDataComponent(new Vec2(0, 0), new Rectangle(-16, -16, 32, 32)))
     .add(new InputDataComponent)
+    .add(new HealthComponent(40))
 }

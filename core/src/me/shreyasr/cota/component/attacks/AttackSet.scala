@@ -12,4 +12,5 @@ trait AttackSet {
   val SHIFT_TIME: Int
 
   def basicAttack(engine: Engine, me: Entity, dirVec: Vec2): Boolean
+  def e(engine: Engine, me: Entity, dirVec: Vec2): Boolean
 }

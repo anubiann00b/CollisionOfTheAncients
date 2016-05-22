@@ -2,7 +2,7 @@ package me.shreyasr.cota.system
 
 import com.badlogic.ashley.core.{Entity, Family}
 import com.badlogic.ashley.systems.IteratingSystem
-import me.shreyasr.cota.component.attacks.{AttackSetHolder, SteampunkAttackSet}
+import me.shreyasr.cota.component.attacks.{AttackSetHolder, BiopunkAttackSet, SteampunkAttackSet}
 import me.shreyasr.cota.component.{InputDataComponent, StateDataComponent}
 import me.shreyasr.cota.util.Vec2
 import me.shreyasr.cota.{MobaGame, _}
@@ -26,6 +26,8 @@ class UpdateSystem(priority: Int, res: MobaGame.BaseRes)
       if (input.a) state.vel.x = -2
 
       if (input.leftClick) attack.basicAttack(getEngine, entity,
+        new Vec2(input.mouseX, input.mouseY).sub(state.pos))
+      if (input.e) attack.e(getEngine, entity,
         new Vec2(input.mouseX, input.mouseY).sub(state.pos))
     }
   }

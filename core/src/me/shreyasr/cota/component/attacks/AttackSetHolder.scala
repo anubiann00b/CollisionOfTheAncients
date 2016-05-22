@@ -17,4 +17,10 @@ class AttackSetHolder(var attackSet: AttackSet) {
       if (!madeAttack) basicAttackTimer.reset()
     }
   }
+  def e(engine: Engine, me: Entity, dirVec: Vec2): Unit = {
+    if (eTimer.canAttack) {
+      val madeAttack = attackSet.e(engine, me, dirVec)
+      if (!madeAttack) eTimer.reset()
+    }
+  }
 }

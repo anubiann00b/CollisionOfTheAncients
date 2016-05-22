@@ -8,7 +8,7 @@ import me.shreyasr.cota.util.{EntityFactory, Vec2}
 
 object SteampunkAttackSet extends AttackSet {
 
-  override val BASIC_ATTACK_TIME: Int = 20
+  override val BASIC_ATTACK_TIME: Int = 40
   override val SPACE_TIME: Int = 20
   override val Q_TIME: Int = 20
   override val SHIFT_TIME: Int = 20
@@ -28,5 +28,8 @@ object SteampunkAttackSet extends AttackSet {
       engine.addEntity(bulletEntity)
     })
     true
+  }
+  def e (engine: Engine, me: Entity, dirVec: Vec2): Boolean = {
+    false
   }
 }
