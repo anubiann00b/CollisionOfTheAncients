@@ -1,0 +1,17 @@
+package me.shreyasr.cota.component.attacks
+
+import com.badlogic.ashley.core.{Engine, Entity}
+import me.shreyasr.cota.util.Vec2
+
+class AttackSetHolder(var attackSet: AttackSet) {
+
+  val basicAttackTimer = new AttackTimer(attackSet.BASIC_ATTACK_TIME)
+  val qTimer = new AttackTimer(attackSet.Q_TIME)
+  val eTimer = new AttackTimer(attackSet.E_TIME)
+  val spaceTimer = new AttackTimer(attackSet.SPACE_TIME)
+  val shiftTimer = new AttackTimer(attackSet.SHIFT_TIME)
+
+  def basicAttack(engine: Engine, me: Entity, dirVec: Vec2): Unit = {
+    if (basicAttackTimer.canAttack) attackSet.basicAttack(engine, me, dirVec)
+  }
+}

@@ -11,7 +11,7 @@ object EntityFactory {
     .add(new OwnerIdComponent(owner))
     .add(new TypeComponent(TypeComponent.Bullet))
     .add(new StateDataComponent(pos.copy(), new Rectangle(-4, -4, 8, 8)))
-    .add(new RenderDataComponent(Asset.SHOTGUN_BULLET, 7, 3, 4f))
+    .add(new RenderDataComponent(Asset.STEAMPUNK_SHOTGUN_BULLET, 7, 3, 4f))
 
   def createRenderablePlayer(id: Int = IdComponent.randomId(),
                              input: InputDataComponent = new InputDataComponent()) =
