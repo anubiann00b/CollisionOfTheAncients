@@ -11,5 +11,6 @@ class PreBatchRenderSystem(priority: Int, res: MobaGame.RenderingRes) extends Ba
     if (res.batch.isDrawing) res.batch.end()
     res.batch.begin()
     res.batch.setColor(Color.WHITE)
+    res.batch.setProjectionMatrix(res.camera.combined)
   }
 }

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="4" height="4" tilewidth="64" tileheight="64" nextobjectid="1">
+ <tileset firstgid="1" name="grass_cobble" tilewidth="64" tileheight="64" tilecount="30" columns="6">
+  <image source="grass_cobble.png" width="384" height="320"/>
+ </tileset>
+ <layer name="regions" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,29,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="input_Base" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,19,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output1_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,19,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output2_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,20,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output3_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,21,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output4_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,22,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output5_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,23,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output6_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,24,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output7_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,19,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output8_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,20,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output9_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,21,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output10_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,22,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output11_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,23,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output12_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,24,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output13_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,19,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output14_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,19,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+ <layer name="output15_Final" width="4" height="4">
+  <data encoding="csv">
+0,0,0,0,
+0,19,0,0,
+0,0,0,0,
+0,0,0,0
+</data>
+ </layer>
+</map>

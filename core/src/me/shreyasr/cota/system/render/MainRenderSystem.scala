@@ -16,7 +16,7 @@ class MainRenderSystem(priority: Int, res: MobaGame.RenderingRes)
 
       res.batch.setColor(ttc.color)
       res.batch.draw(ttc.asset.get,
-        ttc.pos.x.toInt%640 - ttc.originX, ttc.pos.y.toInt%480 - ttc.originY,
+        ttc.pos.x - ttc.originX, ttc.pos.y - ttc.originY,
         ttc.originX, ttc.originY,
         ttc.screenWidth, ttc.screenHeight,
         1, 1, ttc.rotation,

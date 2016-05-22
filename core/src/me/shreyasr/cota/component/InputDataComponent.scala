@@ -7,7 +7,14 @@ class InputDataComponent(var w: Boolean = false,
                          var a: Boolean = false,
                          var s: Boolean = false,
                          var d: Boolean = false,
-                         var space: Boolean = false)
+                         var q: Boolean = false,
+                         var e: Boolean = false,
+                         var shift: Boolean = false,
+                         var space: Boolean = false,
+                         var leftClick: Boolean = false,
+                         var rightClick: Boolean = false,
+                         var mouseX: Float = 0,
+                         var mouseY: Float = 0)
   extends Component {
 
   def this() = this(false)
@@ -24,6 +31,13 @@ object InputDataComponent {
       Gdx.input.isKeyPressed(Input.Keys.A),
       Gdx.input.isKeyPressed(Input.Keys.S),
       Gdx.input.isKeyPressed(Input.Keys.D),
-      Gdx.input.isKeyPressed(Input.Keys.SPACE))
+      Gdx.input.isKeyPressed(Input.Keys.Q),
+      Gdx.input.isKeyPressed(Input.Keys.E),
+      Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT),
+      Gdx.input.isKeyPressed(Input.Keys.SPACE),
+      Gdx.input.isButtonPressed(Input.Buttons.LEFT),
+      Gdx.input.isButtonPressed(Input.Buttons.RIGHT),
+      Gdx.input.getX,
+      Gdx.input.getY)
   }
 }

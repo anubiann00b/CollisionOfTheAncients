@@ -1,4 +1,4 @@
-package me.shreyasr.cota.util
+package me.shreyasr.cota.util.asset
 
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.Texture
@@ -15,6 +15,7 @@ object Asset extends ShortEnum[Asset] {
 
   def loadAll(assetManager: AssetManager) {
     Asset.assetManager = assetManager
+    MapAsset.loadAll(assetManager)
     for (asset <- values) {
       assetManager.load(asset.file, classOf[Texture])
     }

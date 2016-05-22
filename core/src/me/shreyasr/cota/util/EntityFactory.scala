@@ -2,6 +2,7 @@ package me.shreyasr.cota.util
 
 import com.badlogic.ashley.core.Entity
 import me.shreyasr.cota.component._
+import me.shreyasr.cota.util.asset.Asset
 
 object EntityFactory {
 

@@ -2,7 +2,8 @@ package me.shreyasr.cota.component
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.graphics.Color
-import me.shreyasr.cota.util.{Asset, Vec2}
+import me.shreyasr.cota.util.Vec2
+import me.shreyasr.cota.util.asset.Asset
 
 class RenderDataComponent(val asset: Asset, width: Int, height: Int, scale: Float) extends Component {
 

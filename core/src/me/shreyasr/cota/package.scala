@@ -9,6 +9,9 @@ import scala.collection.JavaConverters._
 package object cota {
 
   implicit class FloatImprovements(float: Float) {
+    def clamp(lo: Float, hi: Float): Float = {
+      if (float < lo) lo else if (float > hi) hi else float
+    }
     def roundTo(digits: Int) = {
       val s = math.pow(10, digits)
       math.round(float * s) / s

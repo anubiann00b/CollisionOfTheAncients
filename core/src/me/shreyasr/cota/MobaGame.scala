@@ -4,21 +4,27 @@ import java.io.IOException
 
 import com.badlogic.ashley.core.Engine
 import com.badlogic.gdx.assets.AssetManager
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.{BitmapFont, SpriteBatch}
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.utils.viewport.ExtendViewport
 import com.badlogic.gdx.{ApplicationAdapter, Gdx}
 import com.esotericsoftware.kryonet.{Listener, _}
 import com.twitter.chill.ScalaKryoInstantiator
 import me.shreyasr.cota.MobaGame.RenderingRes
 import me.shreyasr.cota.network.{KryoRegistrar, ListQueuedListener, PacketQueue, PacketToClient}
-import me.shreyasr.cota.system.render.util.RenderSystem
-import me.shreyasr.cota.system.render.{MainRenderSystem, PostRenderSystem, PreBatchRenderSystem, PreRenderSystem}
-import me.shreyasr.cota.system.{InputSendSystem, PacketProcessSystem, RenderDataUpdateSystem, UpdateSystem}
-import me.shreyasr.cota.util.{Asset, EntityFactory}
+import me.shreyasr.cota.system.render.util.{CameraUpdateSystem, RenderSystem}
+import me.shreyasr.cota.system.render._
+import me.shreyasr.cota.system._
+import me.shreyasr.cota.util.EntityFactory
+import me.shreyasr.cota.util.asset.Asset
 
 import scala.collection.JavaConverters._
 
 object MobaGame {
+
+  val WORLD_WIDTH = 6144
+  val WORLD_HEIGHT = 6144
 
   val GLOBAL_FPS = 60
 
@@ -27,6 +33,10 @@ object MobaGame {
     val shape = new ShapeRenderer
     val assetManager = new AssetManager
     val font = new BitmapFont
+
+    val camera = new OrthographicCamera(640, 480)
+//    val viewport = new ExtendViewport(1000, 750, 1600, 900, camera)
+    val viewport = new ExtendViewport(800, 600, 1280, 720, camera)
   }
 
   class ClientRes extends BaseRes {
@@ -64,21 +74,30 @@ class MobaGame extends ApplicationAdapter {
     engine.addSystem(new UpdateSystem(p(), res))
 
     engine.addSystem(new RenderDataUpdateSystem(p(), res))
+
+    engine.addSystem(new CameraUpdateSystem(p(), res))
     engine.addSystem(new PreRenderSystem(p()))
+    engine.addSystem(new   MapRenderSystem(p(), res))
     engine.addSystem(new PreBatchRenderSystem(p(), res))
-    engine.addSystem(new MainRenderSystem(p(), res))
+    engine.addSystem(new   MainRenderSystem(p(), res))
     engine.addSystem(new PostRenderSystem(p(), res))
+    engine.addSystem(new   UIRenderSystem(p(), res))
 
     initNetworking()
   }
 
   override def render(): Unit = {
     listener.run()
-    // TODO: update packets
     engine.update(Gdx.graphics.getRawDeltaTime * 1000)
     engine.getSystems.asScala
       .filter(_.isInstanceOf[RenderSystem])
+          .toArray.sortBy(_.priority)
       .foreach(_.update(Gdx.graphics.getRawDeltaTime * 1000))
+  }
+
+  override def resize(width: Int, height: Int) = {
+    viewport.update(width, height)
+    engine.getSystem(classOf[UIRenderSystem]).resize(width, height)
   }
 
   def initNetworking(): Unit = {

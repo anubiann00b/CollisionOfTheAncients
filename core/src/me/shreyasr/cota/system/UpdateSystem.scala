@@ -14,11 +14,11 @@ class UpdateSystem(priority: Int, res: MobaGame.BaseRes)
 
     if (inputOpt.isDefined) {
       val input = inputOpt.get
-      if (input.w) state.pos.y += 1
-      if (input.s) state.pos.y -= 1
+      if (input.w) state.pos.y += 2
+      if (input.s) state.pos.y -= 2
 
-      if (input.d) state.pos.x += 1
-      if (input.a) state.pos.x -= 1
+      if (input.d) state.pos.x += 2
+      if (input.a) state.pos.x -= 2
     }
   }
 }
