@@ -17,7 +17,6 @@ class CameraUpdateSystem(priority: Int, res: RenderingRes) extends EntitySystem(
         res.viewport.getWorldHeight / 2,
         MobaGame.WORLD_HEIGHT - res.viewport.getWorldHeight / 2),
       0)
-    println(res.camera.position)
     res.viewport.apply()
     res.camera.update()
   }
