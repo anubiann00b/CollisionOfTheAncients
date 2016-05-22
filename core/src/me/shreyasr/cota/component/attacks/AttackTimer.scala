@@ -10,6 +10,10 @@ class AttackTimer(private val frames: Int) {
       true
     } else false
   }
+
+  def reset() = {
+    lastFrame = AttackTimer.currentFrame - frames
+  }
 }
 object AttackTimer {
   def increment() = currentFrame += 1

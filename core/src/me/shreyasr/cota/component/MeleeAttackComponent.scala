@@ -1,10 +1,12 @@
 package me.shreyasr.cota.component
 
+import com.badlogic.ashley.core.Component
 import me.shreyasr.cota.component.MeleeAttackComponent.TargettingMechanism
 
 class MeleeAttackComponent(val delay: Int,
                            val targettingMechanism: TargettingMechanism,
-                           val lockMovement: Boolean) {
+                           val lockMovement: Boolean) extends Component {
+
 
 
 }
@@ -12,7 +14,7 @@ class MeleeAttackComponent(val delay: Int,
 object MeleeAttackComponent {
 
   trait TargettingMechanism {
-    def doesHit()
+    def doesHit(): Boolean
     def onHit()
   }
 

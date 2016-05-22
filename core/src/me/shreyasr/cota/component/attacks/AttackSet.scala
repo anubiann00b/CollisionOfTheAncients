@@ -11,5 +11,5 @@ trait AttackSet {
   val SPACE_TIME: Int
   val SHIFT_TIME: Int
 
-  def basicAttack(engine: Engine, me: Entity, dirVec: Vec2)
+  def basicAttack(engine: Engine, me: Entity, dirVec: Vec2): Boolean
 }

@@ -25,7 +25,7 @@ class InputDataComponent(var w: Boolean = false,
 
 object InputDataComponent {
 
-  def create: InputDataComponent = {
+  def create(mx: Float, my: Float): InputDataComponent = {
     new InputDataComponent(
       Gdx.input.isKeyPressed(Input.Keys.W),
       Gdx.input.isKeyPressed(Input.Keys.A),
@@ -37,7 +37,6 @@ object InputDataComponent {
       Gdx.input.isKeyPressed(Input.Keys.SPACE),
       Gdx.input.isButtonPressed(Input.Buttons.LEFT),
       Gdx.input.isButtonPressed(Input.Buttons.RIGHT),
-      Gdx.input.getX,
-      Gdx.input.getY)
+      mx, my)
   }
 }

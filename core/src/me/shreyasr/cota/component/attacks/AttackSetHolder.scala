@@ -12,6 +12,9 @@ class AttackSetHolder(var attackSet: AttackSet) {
   val shiftTimer = new AttackTimer(attackSet.SHIFT_TIME)
 
   def basicAttack(engine: Engine, me: Entity, dirVec: Vec2): Unit = {
-    if (basicAttackTimer.canAttack) attackSet.basicAttack(engine, me, dirVec)
+    if (basicAttackTimer.canAttack) {
+      val madeAttack = attackSet.basicAttack(engine, me, dirVec)
+      if (!madeAttack) basicAttackTimer.reset()
+    }
   }
 }

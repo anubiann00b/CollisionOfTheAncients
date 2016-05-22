@@ -76,9 +76,9 @@ class MobaGame extends ApplicationAdapter {
     engine.addEntity(player)
 
     val p = { var i = 0; () => { i += 1; i} }
-    engine.addSystem(new InputSendSystem(p(), res))
+    engine.addSystem(new InputSendSystem(p(), res, (x, y) => new Vec2(viewport.unproject(new Vector2(x, y)))))
     engine.addSystem(new PacketProcessSystem(p(), res))
-    engine.addSystem(new UpdateSystem(p(), res, (x, y) => new Vec2(viewport.unproject(new Vector2(x, y)))))
+    engine.addSystem(new UpdateSystem(p(), res))
     engine.addSystem(new CollisionSystem(p()))
     engine.addSystem(new VelUpdateSystem(p()))
 
