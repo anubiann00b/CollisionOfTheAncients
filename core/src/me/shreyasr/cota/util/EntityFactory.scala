@@ -6,6 +6,10 @@ import me.shreyasr.cota.util.asset.Asset
 
 object EntityFactory {
 
+  def createBullet(pos: Vec2) = new Entity()
+    .add(new TypeComponent(TypeComponent.Bullet))
+    .add(new StateDataComponent(pos.copy(), new Rectangle(0, 0, 8, 8)))
+
   def createRenderablePlayer(id: Int = IdComponent.randomId(),
                              input: InputDataComponent = new InputDataComponent()) =
     createPlayer(id)
@@ -14,6 +18,6 @@ object EntityFactory {
   def createPlayer(id: Int) = new Entity()
     .add(new TypeComponent(TypeComponent.Player))
     .add(new IdComponent(id))
-    .add(new StateDataComponent(new Vec2(0, 0), new Rectangle(0, 0, 32, 32)))
+    .add(new StateDataComponent(new Vec2(0, 0), new Rectangle(-16, -16, 32, 32)))
     .add(new InputDataComponent)
 }

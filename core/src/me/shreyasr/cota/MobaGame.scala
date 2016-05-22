@@ -78,7 +78,7 @@ class MobaGame extends ApplicationAdapter {
     engine.addSystem(new InputSendSystem(p(), res))
     engine.addSystem(new PacketProcessSystem(p(), res))
     engine.addSystem(new UpdateSystem(p(), res))
-//    engine.addSystem(new CollisionSystem(p()))
+    engine.addSystem(new CollisionSystem(p()))
 
     engine.addSystem(new RenderDataUpdateSystem(p(), res))
 

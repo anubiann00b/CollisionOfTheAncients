@@ -12,7 +12,7 @@ public class Rectangle {
     }
 
     private float left(Vec2 pos) {
-        return offset.x - size.x + pos.x;
+        return offset.x + pos.x;
     }
 
     private float right(Vec2 pos) {
@@ -24,7 +24,7 @@ public class Rectangle {
     }
 
     private float down(Vec2 pos) {
-        return offset.y - size.y + pos.y;
+        return offset.y + pos.y;
     }
 
     public boolean isIn(Rectangle rect, Vec2 m, Vec2 o) {
