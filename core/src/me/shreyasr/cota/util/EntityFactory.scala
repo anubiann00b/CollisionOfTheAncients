@@ -7,8 +7,10 @@ import me.shreyasr.cota.util.asset.Asset
 object EntityFactory {
 
   def createBullet(pos: Vec2) = new Entity()
+    .add(new IdComponent(-1))
     .add(new TypeComponent(TypeComponent.Bullet))
-    .add(new StateDataComponent(pos.copy(), new Rectangle(0, 0, 8, 8)))
+    .add(new StateDataComponent(pos.copy(), new Rectangle(-4, -4, 8, 8)))
+    .add(new RenderDataComponent(Asset.SHOTGUN_BULLET, 7, 3, 4f))
 
   def createRenderablePlayer(id: Int = IdComponent.randomId(),
                              input: InputDataComponent = new InputDataComponent()) =
